@@ -29,7 +29,7 @@ const StatusCard = ({
                         <small>
                             Updated:{" "}
                             <TimeAgo
-                                date={new Date(new Date().getTime() - 1000)} // weird fix, but it works
+                                date={new Date(lastUpdated)} // weird fix, but it works
                             />
                         </small>
                     )}
