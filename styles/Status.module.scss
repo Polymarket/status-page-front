@@ -1,0 +1,19 @@
+
+.container {
+  max-width: 825px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 25px 10px;
+
+  h1 {
+    margin: 30px 0 15px 0;
+    font-weight: medium;
+    font-size: 30px;
+  }
+
+  .logo {
+    display: block;
+    padding: 24px;
+    margin: 0 auto;
+  }
+}
