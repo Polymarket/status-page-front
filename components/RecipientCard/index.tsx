@@ -27,6 +27,7 @@ const RecipientCard = ({
             </div>
             <div className={styles.body}>
                 <div className={styles.left}>
+                    <span>Balance</span>
                     {lastUpdated && (
                         <small>
                             Updated:{" "}
@@ -37,7 +38,11 @@ const RecipientCard = ({
                     )}
                 </div>
                 <div className={styles.right}>
-                    <span>{balance}</span>
+                    <span
+                        className={parseFloat(balance) < 0.2 ? styles.red : ""}
+                    >
+                        {balance}
+                    </span>
                 </div>
             </div>
         </div>

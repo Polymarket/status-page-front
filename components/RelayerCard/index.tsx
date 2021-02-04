@@ -41,7 +41,11 @@ const RelayerCard = ({
                     )}
                 </div>
                 <div className={styles.right}>
-                    <span>{balance}</span>
+                    <span
+                        className={parseFloat(balance) < 0.2 ? styles.red : ""}
+                    >
+                        {balance}
+                    </span>
                     {status && (
                         <StatusPill status={status ? "Ready" : "Error"} />
                     )}
