@@ -1,31 +1,28 @@
 import TimeAgo from "react-timeago";
-import styles from "./RelayerCard.module.scss";
+import styles from "./RecipientCard.module.scss";
 import StatusPill from "../StatusPill";
 
-interface RelayerCardProps {
+interface RecipientCardProps {
     title: string;
     address: string;
     balance: string;
-    status: "Ready" | "Error";
     lastUpdated: Date;
 }
 
-const RelayerCard = ({
+const RecipientCard = ({
     title,
     address,
     balance,
-    status,
     lastUpdated,
-}: RelayerCardProps): JSX.Element => {
+}: RecipientCardProps): JSX.Element => {
     return (
         <div className={styles.relayerCard}>
             <div className={styles.head}>
-                <span>Relayer</span>
+                <span>{title}</span>
                 <span className={styles.address}>{address}</span>
             </div>
             <div className={styles.body}>
                 <div className={styles.left}>
-                    <span>{title}</span>
                     {lastUpdated && (
                         <small>
                             Updated:{" "}
@@ -37,13 +34,10 @@ const RelayerCard = ({
                 </div>
                 <div className={styles.right}>
                     <span>{balance}</span>
-                    {status && (
-                        <StatusPill status={status ? "Ready" : "Error"} />
-                    )}
                 </div>
             </div>
         </div>
     );
 };
 
-export default RelayerCard;
+export default RecipientCard;

@@ -1,5 +1,6 @@
 import useSWR from "swr";
 import RelayerCard from "../components/RelayerCard";
+import RecipientCard from "../components/RecipientCard";
 import StatusCard from "../components/StatusCard";
 
 import styles from "../styles/Status.module.scss";
@@ -31,10 +32,16 @@ const Status = (): JSX.Element => {
                 className={styles.logo}
             />
             <h1>Mainnet Relayer (Deposits & Withdrawals)</h1>
+            <RecipientCard
+                title="Mainnet Recipient"
+                lastUpdated={data.mainnet.lastUpdated}
+                address={data.mainnet.address}
+                balance={data.mainnet.recipientBalance}
+            />
             {data?.mainnet.relayers.map((relayer) => (
                 <RelayerCard
                     key={relayer.address}
-                    title="Recipient Balance"
+                    title="Balance"
                     lastUpdated={data.mainnet.lastUpdated}
                     address={relayer.address}
                     balance={relayer.balance}
@@ -43,6 +50,12 @@ const Status = (): JSX.Element => {
             ))}
 
             <h1>Matic Relayer (Trading/Liquidity)</h1>
+            <RecipientCard
+                title="Matic Recipient"
+                lastUpdated={data.matic.lastUpdated}
+                address={data.matic.address}
+                balance={data.matic.recipientBalance}
+            />
             {data?.matic.relayers.map((relayer) => (
                 <RelayerCard
                     key={relayer.address}
@@ -53,14 +66,14 @@ const Status = (): JSX.Element => {
                     lastUpdated={data.matic.lastUpdated}
                 />
             ))}
-
+            <h1>Matic RPC (onChain Shares, Trading)</h1>
             <StatusCard
                 title="RPC Matic (onChain Shares, Trading)"
                 block={data.blockVigil.block}
                 lastUpdated={data.blockVigil.lastUpdated}
                 status={data.blockVigil.status}
             />
-
+            <h1>The Graph (Porfolio Data)</h1>
             <StatusCard
                 title="theGraph (Porfolio Data)"
                 block={data.subgraph.block}
