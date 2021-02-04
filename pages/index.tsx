@@ -34,6 +34,7 @@ const Status = (): JSX.Element => {
             <h1>Mainnet Relayer (Deposits & Withdrawals)</h1>
             <RecipientCard
                 title="Mainnet Recipient"
+                link={`https://gsn-site.vercel.app/recipients/${data.mainnet.address}`}
                 lastUpdated={data.mainnet.lastUpdated}
                 address={data.mainnet.address}
                 balance={data.mainnet.recipientBalance}
@@ -43,6 +44,7 @@ const Status = (): JSX.Element => {
                     key={relayer.address}
                     title="Balance"
                     lastUpdated={data.mainnet.lastUpdated}
+                    link={`https://etherscan.io/address/${relayer.address}`}
                     address={relayer.address}
                     balance={relayer.balance}
                     status={relayer.isReady}
@@ -52,6 +54,7 @@ const Status = (): JSX.Element => {
             <h1>Matic Relayer (Trading/Liquidity)</h1>
             <RecipientCard
                 title="Matic Recipient"
+                link={`https://gsn-site.vercel.app/recipients/${data.matic.address}`}
                 lastUpdated={data.matic.lastUpdated}
                 address={data.matic.address}
                 balance={data.matic.recipientBalance}
@@ -61,6 +64,7 @@ const Status = (): JSX.Element => {
                     key={relayer.address}
                     title="Balance"
                     address={relayer.address}
+                    link={`https://explorer-mainnet.maticvigil.com/address/${relayer.address}`}
                     balance={relayer.balance}
                     status={relayer.isReady}
                     lastUpdated={data.matic.lastUpdated}

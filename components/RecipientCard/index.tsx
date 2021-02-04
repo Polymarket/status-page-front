@@ -1,10 +1,11 @@
 import TimeAgo from "react-timeago";
+import AddressLink from "../AddressLink";
 import styles from "./RecipientCard.module.scss";
-import StatusPill from "../StatusPill";
 
 interface RecipientCardProps {
     title: string;
     address: string;
+    link: string;
     balance: string;
     lastUpdated: Date;
 }
@@ -12,6 +13,7 @@ interface RecipientCardProps {
 const RecipientCard = ({
     title,
     address,
+    link,
     balance,
     lastUpdated,
 }: RecipientCardProps): JSX.Element => {
@@ -19,7 +21,9 @@ const RecipientCard = ({
         <div className={styles.relayerCard}>
             <div className={styles.head}>
                 <span>{title}</span>
-                <span className={styles.address}>{address}</span>
+                <span className={styles.address}>
+                    <AddressLink link={link} address={address} />
+                </span>
             </div>
             <div className={styles.body}>
                 <div className={styles.left}>
