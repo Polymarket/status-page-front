@@ -80,7 +80,7 @@ const Status = (): JSX.Element => {
             <h1>The Graph (Porfolio Data)</h1>
             <StatusCard
                 title="theGraph (Porfolio Data)"
-                block={data.subgraph.block}
+                block={data.subgraph.health.block}
                 lastUpdated={data.subgraph.lastUpdated}
                 status={data.subgraph.status}
             />
