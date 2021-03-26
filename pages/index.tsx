@@ -77,13 +77,6 @@ const Status = (): JSX.Element => {
                 lastUpdated={data.blockVigil.lastUpdated}
                 status={data.blockVigil.status}
             />
-            <h1>The Graph (Porfolio Data)</h1>
-            <StatusCard
-                title="theGraph (Porfolio Data)"
-                block={data.subgraph.health.block}
-                lastUpdated={data.subgraph.lastUpdated}
-                status={data.subgraph.status}
-            />
         </section>
     );
 };
