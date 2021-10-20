@@ -9,7 +9,7 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const Status = (): JSX.Element => {
     const { data, error } = useSWR(
-      "https://polymarket-redis-status.herokuapp.com/",
+        "https://polymarket-redis-status.herokuapp.com/",
         fetcher,
         {
             refreshInterval: 60 * 1000,
@@ -31,6 +31,36 @@ const Status = (): JSX.Element => {
                 alt="Polymarket"
                 className={styles.logo}
             />
+
+            <h1>Matic V2 Relayers (Trading/Liquidity)</h1>
+            <RecipientCard
+                title="Matic Recipient"
+                link={`https://gsn-site.vercel.app/recipients/${data.matic.address}`}
+                lastUpdated={data.matic.lastUpdated}
+                address={data.matic.address}
+                balance={data.matic.recipientBalance}
+            />
+
+            {data?.matic.v2Relayers.map((v2Relayer) => (
+                <RelayerCard
+                    key={v2Relayer.address}
+                    title="Balance"
+                    address={v2Relayer.address}
+                    link={`https://explorer-mainnet.maticvigil.com/address/${v2Relayer.address}`}
+                    balance={v2Relayer.balance}
+                    status={v2Relayer.isReady}
+                    lastUpdated={data.matic.lastUpdated}
+                />
+            ))}
+
+            <h1>Matic RPC (onChain Shares, Trading)</h1>
+            <StatusCard
+                title="RPC Matic (onChain Shares, Trading)"
+                block={data.blockVigil.block}
+                lastUpdated={data.blockVigil.lastUpdated}
+                status={data.blockVigil.status}
+            />
+
             <h1>Mainnet Relayer (Deposits & Withdrawals)</h1>
             <RecipientCard
                 title="Mainnet Recipient"
@@ -50,46 +80,6 @@ const Status = (): JSX.Element => {
                     status={relayer.isReady}
                 />
             ))}
-
-            <h1>Matic Relayer (Trading/Liquidity)</h1>
-            <RecipientCard
-                title="Matic Recipient"
-                link={`https://gsn-site.vercel.app/recipients/${data.matic.address}`}
-                lastUpdated={data.matic.lastUpdated}
-                address={data.matic.address}
-                balance={data.matic.recipientBalance}
-            />
-            {data?.matic.relayers.map((relayer) => (
-                <RelayerCard
-                    key={relayer.address}
-                    title="Balance"
-                    address={relayer.address}
-                    link={`https://explorer-mainnet.maticvigil.com/address/${relayer.address}`}
-                    balance={relayer.balance}
-                    status={relayer.isReady}
-                    lastUpdated={data.matic.lastUpdated}
-                />
-            ))}
-                    <h1>Matic V2 Relayers (Trading/Liquidity)</h1>
-
-            {data?.matic.v2Relayers.map((v2Relayer) => (
-                <RelayerCard
-                    key={v2Relayer.address}
-                    title="Balance"
-                    address={v2Relayer.address}
-                    link={`https://explorer-mainnet.maticvigil.com/address/${v2Relayer.address}`}
-                    balance={v2Relayer.balance}
-                    status={v2Relayer.isReady}
-                    lastUpdated={data.matic.lastUpdated}
-                />
-            ))}
-            <h1>Matic RPC (onChain Shares, Trading)</h1>
-            <StatusCard
-                title="RPC Matic (onChain Shares, Trading)"
-                block={data.blockVigil.block}
-                lastUpdated={data.blockVigil.lastUpdated}
-                status={data.blockVigil.status}
-            />
         </section>
     );
 };
